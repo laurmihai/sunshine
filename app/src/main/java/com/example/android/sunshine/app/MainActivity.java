@@ -1,6 +1,10 @@
 package com.example.android.sunshine.app;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -25,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.detailfragment, menu);
         return true;
     }
 
@@ -37,6 +42,24 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class ));
+        }
+        if (id == R.id.preferred_location) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+
+            SharedPreferences shared = PreferenceManager.getDefaultSharedPreferences(this);
+            String location = shared.getString(getString(R.string.settings_location_key),
+                    getString(R.string.default_settings_location));
+
+            Uri geoLocation  =Uri.parse("geo:0,0?").buildUpon()
+                    .appendQueryParameter("q", location)
+                    .build();
+
+            intent.setData(geoLocation);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                Log.i("intentPreferred location", geoLocation.toString());
+                startActivity(intent);
+            }
             return true;
         }
 

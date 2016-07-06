@@ -6,5 +6,15 @@
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="default_degrees">Celsius</string>
+    <string name="settings_location_label">Location</string>
+    <string name="settings_location_key">location</string>
+    <string name="default_settings_location">93043</string>
+    <string name="metric_units_label">Temperature units</string>
+    <string name="metric_units_key">temperature_units</string>
+    <string name="pref_units_imperial">Imperial</string>
+    <string name="pref_units_metric">Metric</string>
+    <string name="preferred_location">Prefered location</string>
 
 </resources>
